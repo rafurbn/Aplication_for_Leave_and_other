@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="paper" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle with safe padding -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+
+  <!-- Document Sheet -->
+  <g filter="url(#shadow)">
+    <rect x="136" y="100" width="240" height="312" rx="16" fill="url(#paper)" />
+    
+    <!-- Header emblem / seal icon -->
+    <circle cx="256" cy="150" r="22" fill="#047857" opacity="0.15" />
+    <circle cx="256" cy="150" r="14" fill="#047857" />
+
+    <!-- Document Lines simulating official Bengali script -->
+    <rect x="176" y="196" width="160" height="10" rx="5" fill="#0f172a" opacity="0.75" />
+    <rect x="176" y="222" width="140" height="8" rx="4" fill="#64748b" opacity="0.7" />
+    <rect x="176" y="244" width="160" height="8" rx="4" fill="#64748b" opacity="0.7" />
+    <rect x="176" y="266" width="150" height="8" rx="4" fill="#64748b" opacity="0.7" />
+    <rect x="176" y="288" width="120" height="8" rx="4" fill="#64748b" opacity="0.7" />
+
+    <!-- Official Signature Line & Stamp -->
+    <line x1="270" y1="350" x2="350" y2="350" stroke="#047857" stroke-width="3" stroke-linecap="round" />
+    <circle cx="210" cy="346" r="18" fill="#d97706" opacity="0.2" stroke="#d97706" stroke-width="2" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- Golden Quill / Pen overlay -->
+  <g transform="translate(290, 240) rotate(-25)">
+    <path d="M40 0 C60 20, 80 80, 80 120 C80 140, 70 160, 50 170 L48 180 L40 172 L32 180 L30 170 C10 160, 0 140, 0 120 C0 80, 20 20, 40 0 Z" fill="#f59e0b" filter="url(#shadow)" />
+    <path d="M40 0 L40 170" stroke="#b45309" stroke-width="3" />
+    <polygon points="40,170 36,195 40,200 44,195" fill="#1e293b" />
+    <circle cx="40" cy="150" r="4" fill="#78350f" />
+  </g>
+</svg>
