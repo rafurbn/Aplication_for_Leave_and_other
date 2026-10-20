@@ -1,4 +1,4 @@
-import type { FormatTemplate, ApplicationFormData } from './types';
+import type { FormatTemplate, ApplicationFormData } from '../types';
 import { calculateBanglaDuration, toBanglaDate } from './banglaUtils';
 
 export interface DocumentSection {
