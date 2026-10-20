@@ -108,12 +108,15 @@ async function startServer() {
   app.post('/api/admin/login', (req, res) => {
     if (!isLoginAllowed(req)) return res.status(429).json({ success: false, message: 'অনেকবার চেষ্টা হয়েছে। ১৫ মিনিট পরে আবার চেষ্টা করুন।' });
     const password = typeof req.body?.password === 'string' ? req.body.password : '';
-    if (!crypto.timingSafeEqual(Buffer.from(password), Buffer.from(adminPassword))) {
-      return res.status(401).json({ success: false, message: 'ভুল অ্যাডমিন পাসওয়ার্ড!' });
-    }
+    const passwordMatches = password.length === adminPassword.length && crypto.timingSafeEqual(
+      Buffer.from(password),
+      Buffer.from(adminPassword),
+    );
+    if (!passwordMatches) return res.status(401).json({ success: false, message: 'ভুল অ্যাডমিন পাসওয়ার্ড!' });
     const token = crypto.randomBytes(32).toString('hex');
-    adminSessions.set(token, { expiresAt: Date.now() + ADMIN_SESSION_TTL_MS });
-    return res.json({ success: true, token, expiresAt: Date.now() + ADMIN_SESSION_TTL_MS });
+    const expiresAt = Date.now() + ADMIN_SESSION_TTL_MS;
+    adminSessions.set(token, { expiresAt });
+    return res.json({ success: true, token, expiresAt });
   });
 
   app.post('/api/admin/logout', requireAdmin, (req, res) => {
