@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormatTemplate, ApplicationFormData } from '../types';
 import { calculateBanglaDuration } from '../utils/banglaUtils';
+import { showsLeaveDateRange } from '../utils/validation';
 import { Building2, Calendar, RotateCcw, User, Wand2 } from 'lucide-react';
 
 function readFieldValue(data: ApplicationFormData, key: string): string {
@@ -122,7 +123,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                   type="text"
                   value={formData.customRecipient || ''}
                   onChange={(e) => onChange({ customRecipient: e.target.value })}
-                  placeholder="যেমন: বিভাগীয় উপপরিচালক"
+                  placeholder="যেমন: বিভাগীয় উপপরিচালক"
                   className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-600 focus:outline-hidden"
                 />
               </div>
@@ -222,7 +223,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
             </div>
 
             {/* Designation / Role Selection */}
-            {isEmployee ? (
+            {isEmployee && (
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   পদবি নির্বাচন করুন <span className="text-rose-500">*</span>
@@ -238,30 +239,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                     </option>
                   ))}
                   <option value="অন্যান্য">অন্যান্য (কাস্টম লিখুন)</option>
-                </select>
-              </div>
-            ) : (
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  শ্রেণি <span className="text-rose-500">*</span>
-                </label>
-                <select
-                  value={formData.studentClass || '১০ম শ্রেণি'}
-                  onChange={(e) => onChange({ studentClass: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-emerald-600 focus:outline-hidden"
-                >
-                  {template.fields.find(f => f.key === 'studentClass')?.options?.map(opt => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  )) || (
-                    <>
-                      <option value="১০ম শ্রেণি (এসএসসি পরীক্ষার্থী)">১০ম শ্রেণি (এসএসসি পরীক্ষার্থী)</option>
-                      <option value="৯ম শ্রেণি">৯ম শ্রেণি</option>
-                      <option value="৮ম শ্রেণি">৮ম শ্রেণি</option>
-                      <option value="৭ম শ্রেণি">৭ম শ্রেণি</option>
-                      <option value="৬ষ্ঠ শ্রেণি">৬ষ্ঠ শ্রেণি</option>
-                      <option value="৫ম শ্রেণি">৫ম শ্রেণি</option>
-                    </>
-                  )}
                 </select>
               </div>
             )}
@@ -285,7 +262,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
             {/* School / Institution Name */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                {isEmployee ? 'বিদ্যালয় / কর্মস্থলের নাম' : 'বিদ্যালয়ের নাম'} <span className="text-rose-500">*</span>
+                {isEmployee ? 'বিদ্যালয় / কর্মস্থলের নাম' : 'বিদ্যালয়ের নাম'} <span className="text-rose-500">*</span>
               </label>
               <input
                 type="text"
@@ -297,7 +274,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
             </div>
 
             {/* Student Roll or Employee ID */}
-            {isEmployee ? (
+            {isEmployee && (
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   শিক্ষক পরিচিতি / আইডি নম্বর (ঐচ্ছিক)
@@ -307,19 +284,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                   value={formData.employeeId || ''}
                   onChange={(e) => onChange({ employeeId: e.target.value })}
                   placeholder="যেমন: ৯১২০৮৫৭৪৬"
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-600 focus:outline-hidden"
-                />
-              </div>
-            ) : (
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  শ্রেণি রোল নম্বর <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={formData.rollNumber || ''}
-                  onChange={(e) => onChange({ rollNumber: e.target.value })}
-                  placeholder="যেমন: ০৫"
                   className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-600 focus:outline-hidden"
                 />
               </div>
@@ -369,7 +333,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    যোগদানের তারিখ
+                    যোগদানের তারিখ <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -396,7 +360,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
           )}
 
           {/* Leave Dates (For templates with date-ranges) */}
-          {template.id !== 'joining_letter' && template.id !== 'student_tc' && template.id !== 'student_testimonial' && (
+          {showsLeaveDateRange(template) && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">

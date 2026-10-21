@@ -2,14 +2,28 @@ import { ApplicationFormData, FormatTemplate } from '../types';
 
 const OTHER_RECIPIENT = 'অন্যান্য';
 
-const DATE_RANGE_EXCLUDED: string[] = ['joining_letter', 'student_tc', 'student_testimonial'];
+/**
+ * Formats whose standard wording needs a leave period.
+ * NOC, TC, testimonial, fee and readmission requests read fine without dates,
+ * and joining letters carry their own joining date instead.
+ */
+const LEAVE_PERIOD_FORMATS: string[] = [
+  'casual_leave',
+  'medical_leave',
+  'maternity_leave',
+  'earned_leave',
+  'prl_pension',
+  'ex_bangladesh',
+  'student_absence_leave',
+  'student_advance_leave',
+];
 
 function isBlank(value?: string): boolean {
   return !value || value.trim() === '';
 }
 
 export function showsLeaveDateRange(template: FormatTemplate): boolean {
-  return !DATE_RANGE_EXCLUDED.includes(template.id);
+  return LEAVE_PERIOD_FORMATS.includes(template.id);
 }
 
 /**
@@ -26,10 +40,10 @@ export function getMissingRequiredFields(
     missing.push('বরাবর (প্রাপকের পদবি)');
   }
   if (isEmployee && isBlank(formData.organization)) {
-    missing.push('কার্যালয় / অফিস');
+    missing.push('কার্যালয় / অফিস');
   }
   if (isBlank(formData.workplace)) {
-    missing.push('বিদ্যালয় / কর্মস্থলের নাম');
+    missing.push('বিদ্যালয় / কর্মস্থলের নাম');
   }
   if (isBlank(formData.district)) {
     missing.push('জেলা');
@@ -40,15 +54,14 @@ export function getMissingRequiredFields(
   if (isEmployee && (isBlank(formData.designation) || (formData.designation === OTHER_RECIPIENT && isBlank(formData.customDesignation)))) {
     missing.push('পদবি');
   }
-  if (!isEmployee) {
-    if (isBlank(formData.studentClass)) missing.push('শ্রেণি');
-    if (isBlank(formData.rollNumber)) missing.push('শ্রেণি রোল নম্বর');
-  }
   if (isBlank(formData.mobile)) {
     missing.push('মোবাইল নম্বর');
   }
   if (isBlank(formData.subject)) {
-    missing.push('বিষয়');
+    missing.push('বিষয়');
+  }
+  if (template.id === 'joining_letter' && isBlank(formData.joiningDate)) {
+    missing.push('যোগদানের তারিখ');
   }
   if (showsLeaveDateRange(template)) {
     if (isBlank(formData.leaveStartDate)) missing.push('শুরুর তারিখ');

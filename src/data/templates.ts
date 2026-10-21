@@ -12,7 +12,7 @@ export const TEACHER_RECIPIENTS = [
   'উপজেলা শিক্ষা অফিসার (ইউইও)',
   'সহকারী উপজেলা শিক্ষা অফিসার (এটিইও)',
   'জেলা প্রাথমিক শিক্ষা অফিসার (ডিপিইও)',
-  'বিভাগীয় উপপরিচালক (ডিডি)',
+  'বিভাগীয় উপপরিচালক (ডিডি)',
   'মহাপরিচালক (ডিজি), প্রাথমিক শিক্ষা অধিদপ্তর',
 ];
 
@@ -33,8 +33,8 @@ export const STUDENT_RECIPIENTS = [
 
 export const STUDENT_CLASSES = [
   '১ম শ্রেণি',
-  '২য় শ্রেণি',
-  '৩য় শ্রেণি',
+  '২য় শ্রেণি',
+  '৩য় শ্রেণি',
   '৪র্থ শ্রেণি',
   '৫ম শ্রেণি',
   '৬ষ্ঠ শ্রেণি',
@@ -91,7 +91,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     designationOptions: TEACHER_DESIGNATIONS,
     throughOptions: TEACHER_THROUGH_OPTIONS,
     fields: [
-      { key: 'leaveReason', label: 'অসুস্থতার বিবরণ', type: 'text', placeholder: 'যেমন: টাইফয়েড জ্বর ও তীব্র শারীরিক দুর্বলতা', defaultValue: 'তীব্র অসুস্থতা ও চিকিৎসকের বিশ্রামের পরামর্শের কারণে', required: true },
+      { key: 'leaveReason', label: 'অসুস্থতার বিবরণ', type: 'text', placeholder: 'যেমন: টাইফয়েড জ্বর ও তীব্র শারীরিক দুর্বলতা', defaultValue: 'তীব্র অসুস্থতা ও চিকিৎসকের বিশ্রামের পরামর্শের কারণে', required: true },
       { key: 'attachments', label: 'সংযুক্তি', type: 'text', defaultValue: 'রেজিস্টার্ড চিকিৎসকের ব্যবস্থাপত্র ও প্রত্যয়নপত্র', helperText: 'যেমন: চিকিৎসকের ব্যবস্থাপত্র ও প্রেসক্রিপশন' },
     ],
   },
@@ -109,9 +109,9 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     recipientOptions: TEACHER_RECIPIENTS,
     designationOptions: TEACHER_DESIGNATIONS,
     throughOptions: TEACHER_THROUGH_OPTIONS,
-    maternityTermOptions: ['১ম মাতৃত্বকালীন ছুটি (৬ মাস)', '২য় মাতৃত্বকালীন ছুটি (৬ মাস)'],
+    maternityTermOptions: ['১ম মাতৃত্বকালীন ছুটি (৬ মাস)', '২য় মাতৃত্বকালীন ছুটি (৬ মাস)'],
     fields: [
-      { key: 'leaveReason', label: 'মাতৃত্বকালীন ছুটির পর্যায়', type: 'select', options: ['১ম মাতৃত্বকালীন ছুটির মঞ্জুরি প্রসঙ্গে', '২য় মাতৃত্বকালীন ছুটির মঞ্জুরি প্রসঙ্গে'], defaultValue: '১ম মাতৃত্বকালীন ছুটির মঞ্জুরি প্রসঙ্গে', required: true },
+      { key: 'leaveReason', label: 'মাতৃত্বকালীন ছুটির পর্যায়', type: 'select', options: ['১ম মাতৃত্বকালীন ছুটির মঞ্জুরি প্রসঙ্গে', '২য় মাতৃত্বকালীন ছুটির মঞ্জুরি প্রসঙ্গে'], defaultValue: '১ম মাতৃত্বকালীন ছুটির মঞ্জুরি প্রসঙ্গে', required: true },
       { key: 'attachments', label: 'সংযুক্তি', type: 'text', defaultValue: 'আল্ট্রাসনোগ্রাম রিপোর্ট ও বিশেষজ্ঞ চিকিৎসকের প্রত্যাশিত প্রসবকালীন সম্ভাব্য তারিখের প্রত্যয়নপত্র' },
     ],
   },
@@ -120,7 +120,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     title: 'ছুটি শেষে কর্মস্থলে যোগদানের আবেদন (Joining Letter)',
     shortTitle: 'যোগদানপত্র (Joining)',
     category: 'employee',
-    description: 'চিকিৎসা ছুটি, ১ম মাতৃত্ব, ২য় মাতৃত্ব বা অর্জিত ছুটি সফলভাবে সমাপ্তির পর দায়িত্ব গ্রহণের অফিশিয়াল আবেদনপত্র।',
+    description: 'চিকিৎসা ছুটি, ১ম মাতৃত্ব, ২য় মাতৃত্ব বা অর্জিত ছুটি সফলভাবে সমাপ্তির পর দায়িত্ব গ্রহণের অফিশিয়াল আবেদনপত্র।',
     badge: 'চাকরিজীবী',
     iconName: 'FileCheck',
     defaultRecipient: 'উপজেলা শিক্ষা অফিসার (ইউইও)',
@@ -131,9 +131,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     throughOptions: TEACHER_THROUGH_OPTIONS,
     joiningTypeOptions: JOINING_TYPES,
     fields: [
-      { key: 'joiningType', label: 'যোগদানের ধরন / ক্যাটাগরি', type: 'select', options: JOINING_TYPES, defaultValue: 'চিকিৎসা ছুটি শেষে কর্মস্থলে যোগদানের আবেদন', required: true },
       { key: 'previousLeaveOrderNo', label: 'পূর্বের ছুটির স্মারক নম্বর ও তারিখ (যদি থাকে)', type: 'text', placeholder: 'যেমন: উশিঅ/বিয়ানী/২০২৬/৪৫, তারিখ: ১০-০৫-২০২৬' },
-      { key: 'joiningTimeSession', label: 'যোগদানের সময়', type: 'select', options: ['পূর্বাহ্ণ', 'অপরাহ্ণ'], defaultValue: 'পূর্বাহ্ণ' },
     ],
   },
   {
@@ -190,7 +188,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     throughOptions: TEACHER_THROUGH_OPTIONS,
     fields: [
       { key: 'leaveReason', label: 'বিদেশ গমনের দেশ ও কারণ', type: 'text', placeholder: 'যেমন: সৌদি আরব (পবিত্র হজ্ব পালনের উদ্দেশ্যে)', defaultValue: 'সৌদি আরবে পবিত্র হজ্ব পালনের উদ্দেশ্যে', required: true },
-      { key: 'attachments', label: 'সংযুক্তি', type: 'text', defaultValue: 'পাসপোর্টের সত্যায়িত কপি ও প্রয়োজনীয় ট্রাভেল সংক্রান্ত তথ্যাদি' },
+      { key: 'attachments', label: 'সংযুক্তি', type: 'text', defaultValue: 'পাসপোর্টের সত্যায়িত কপি ও প্রয়োজনীয় ট্রাভেল সংক্রান্ত তথ্যাদি' },
     ],
   },
   {
@@ -251,7 +249,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     fields: [
       { key: 'studentClass', label: 'শ্রেণি', type: 'select', options: STUDENT_CLASSES, defaultValue: '৮ম শ্রেণি', required: true },
       { key: 'rollNumber', label: 'রোল নম্বর', type: 'text', placeholder: 'যেমন: ১৮', defaultValue: '০২', required: true },
-      { key: 'leaveReason', label: 'অগ্রিম ছুটির কারণ', type: 'select', options: ['বড় বোনের শুভ বিবাহ অনুষ্ঠানে যোগদানের কারণে', 'পারিবারিক জরুরি কাজে গ্রামের বাড়ি যাওয়ার কারণে', 'চিকিৎসার জন্য বিশেষজ্ঞ ডাক্তারের অ্যাপয়েন্টমেন্ট থাকায়'], defaultValue: 'বড় বোনের শুভ বিবাহ অনুষ্ঠানে যোগদানের কারণে', required: true },
+      { key: 'leaveReason', label: 'অগ্রিম ছুটির কারণ', type: 'select', options: ['বড় বোনের শুভ বিবাহ অনুষ্ঠানে যোগদানের কারণে', 'পারিবারিক জরুরি কাজে গ্রামের বাড়ি যাওয়ার কারণে', 'চিকিৎসার জন্য বিশেষজ্ঞ ডাক্তারের অ্যাপয়েন্টমেন্ট থাকায়'], defaultValue: 'বড় বোনের শুভ বিবাহ অনুষ্ঠানে যোগদানের কারণে', required: true },
     ],
   },
   {
@@ -271,6 +269,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     fields: [
       { key: 'studentClass', label: 'শ্রেণি', type: 'select', options: STUDENT_CLASSES, defaultValue: '৯ম শ্রেণি', required: true },
       { key: 'rollNumber', label: 'রোল নম্বর', type: 'text', placeholder: 'যেমন: ০৭', defaultValue: '০৩', required: true },
+      { key: 'fatherOrGuardianName', label: 'পিতা/অভিভাবকের নাম', type: 'text', placeholder: 'যেমন: মোঃ আব্দুল জলিল', required: true },
       { key: 'familyMonthlyIncome', label: 'পিতার পেশা ও পরিবারের অবস্থা', type: 'text', defaultValue: 'পিতা একজন স্বল্প আয়ের দিনমজুর, পরিবারে সদস্য সংখ্যা ৬ জন', required: true },
       { key: 'gpaOrLastExamResult', label: 'পূর্ববর্তী পরীক্ষার ফলাফল', type: 'text', defaultValue: 'পূর্ববর্তী বার্ষিক পরীক্ষায় জিপিএ ৫.০০ (১ম স্থান)', required: true },
     ],
@@ -285,13 +284,14 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     iconName: 'Gift',
     defaultRecipient: 'প্রধান শিক্ষক',
     defaultThrough: 'শ্রেণি শিক্ষকের মাধ্যমে',
-    defaultSubject: 'বিদ্যালয়ের দরিদ্র তহবিল থেকে এককালীন আর্থিক সাহায্যের আবেদন।',
+    defaultSubject: 'বিদ্যালয়ের দরিদ্র তহবিল থেকে এককালীন আর্থিক সাহায্যের আবেদন।',
     recipientOptions: STUDENT_RECIPIENTS,
     designationOptions: ['শিক্ষার্থী'],
     throughOptions: ['শ্রেণি শিক্ষকের মাধ্যমে', 'সরাসরি'],
     fields: [
       { key: 'studentClass', label: 'শ্রেণি', type: 'select', options: STUDENT_CLASSES, defaultValue: '১০ম শ্রেণি (এসএসসি পরীক্ষার্থী)', required: true },
       { key: 'rollNumber', label: 'রোল নম্বর', type: 'text', defaultValue: '০৮', required: true },
+      { key: 'fatherOrGuardianName', label: 'পিতা/অভিভাবকের নাম', type: 'text', placeholder: 'যেমন: মোঃ আব্দুল জলিল', required: true },
       { key: 'leaveReason', label: 'সাহায্যের প্রয়োজনীয়তা', type: 'select', options: ['এসএসসি পরীক্ষার ফরম ফিলাপের ফি পরিশোধের জন্য', 'নতুন শিক্ষাবর্ষের পাঠ্যবই ও সহায়ক উপকরণ ক্রয়ের জন্য', 'ত্রৈমাসিক পরীক্ষার ফি প্রদানের জন্য'], defaultValue: 'এসএসসি পরীক্ষার ফরম ফিলাপের ফি পরিশোধের জন্য', required: true },
     ],
   },
@@ -305,7 +305,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     iconName: 'ArrowRightLeft',
     defaultRecipient: 'প্রধান শিক্ষক',
     defaultThrough: 'শ্রেণি শিক্ষকের মাধ্যমে',
-    defaultSubject: 'বিদ্যালয় হতে ছাড়পত্র (TC) পাওয়ার জন্য আবেদন।',
+    defaultSubject: 'বিদ্যালয় হতে ছাড়পত্র (TC) পাওয়ার জন্য আবেদন।',
     recipientOptions: STUDENT_RECIPIENTS,
     designationOptions: ['শিক্ষার্থী'],
     throughOptions: ['শ্রেণি শিক্ষকের মাধ্যমে', 'সরাসরি'],
@@ -332,7 +332,7 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     throughOptions: ['সরাসরি', 'বিভাগীয় প্রধানের মাধ্যমে'],
     fields: [
       { key: 'studentClass', label: 'উত্তীর্ণ শ্রেণি/পরীক্ষা', type: 'select', options: ['এসএসসি পরীক্ষা', 'এইচএসসি পরীক্ষা', 'ডিগ্রি (পাস) পরীক্ষা', 'স্নাতক (সম্মান) পরীক্ষা'], defaultValue: 'এসএসসি পরীক্ষা', required: true },
-      { key: 'rollNumber', label: 'বোর্ড রোল ও রেজিস্ট্রেশন নম্বর', type: 'text', placeholder: 'রোল: ১২৩৪৫৬, রেজি: ১২৩৪৫৬৭৮৯০', defaultValue: 'রোল: ২১৫৬৩৪, রেজি: ১৮১২৩৪৫৬৭৮', required: true },
+      { key: 'rollNumber', label: 'বোর্ড রোল ও রেজিস্ট্রেশন নম্বর', type: 'text', placeholder: 'যেমন: ২১৫৬৩৪ (রেজি: ১৮১২৩৪৫৬৭৮)', defaultValue: '২১৫৬৩৪ (রেজি: ১৮১২৩৪৫৬৭৮)', required: true },
       { key: 'passingYear', label: 'পাসের বছর ও জিপিএ', type: 'text', placeholder: 'যেমন: ২০২৫, জিপিএ: ৫.০০', defaultValue: '২০২৫, জিপিএ: ৫.০০', required: true },
     ],
   },
@@ -346,68 +346,57 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
     iconName: 'UserCheck',
     defaultRecipient: 'প্রধান শিক্ষক',
     defaultThrough: 'শ্রেণি শিক্ষকের মাধ্যমে',
-    defaultSubject: 'বিদ্যালয়ে পুনরায় ভর্তির অনুমতি প্রার্থনার আবেদন।',
+    defaultSubject: 'বিদ্যালয়ে পুনরায় ভর্তির অনুমতি প্রার্থনার আবেদন।',
     recipientOptions: STUDENT_RECIPIENTS,
     designationOptions: ['শিক্ষার্থী'],
     throughOptions: ['শ্রেণি শিক্ষকের মাধ্যমে', 'সরাসরি'],
     fields: [
       { key: 'studentClass', label: 'শ্রেণি', type: 'select', options: STUDENT_CLASSES, defaultValue: '৬ষ্ঠ শ্রেণি', required: true },
       { key: 'rollNumber', label: 'পূর্বের রোল নম্বর', type: 'text', defaultValue: '০৯', required: true },
-      { key: 'leaveReason', label: 'নাম কর্তন বা অনুপস্থিতির কারণ', type: 'text', defaultValue: 'দীর্ঘদিন জন্ডিসে আক্রান্ত হয়ে চিকিৎসাধীন থাকার কারণে নির্ধারিত সময়ে উপস্থিত হতে না পারা', required: true },
+      { key: 'leaveReason', label: 'নাম কর্তন বা অনুপস্থিতির কারণ', type: 'text', defaultValue: 'দীর্ঘদিন জন্ডিসে আক্রান্ত হয়ে চিকিৎসাধীন থাকার কারণে', required: true },
     ],
   },
 ];
 
 /**
- * Fills every field with realistic demo values so a first-time user can
- * sees how the finished application is meant to read. Never the starting state.
+ * A ready-to-read demo application: every template field carries its own official
+ * wording, only the applicant identity and dates are invented.
  */
 export function getSampleFormData(template: FormatTemplate): ApplicationFormData {
   const isEmployee = template.category === 'employee';
   const today = getTodayISODate();
 
-  return {
+  const sample: ApplicationFormData = {
+    ...getDefaultFormData(template),
     date: toBanglaDate(today),
-    recipient: template.defaultRecipient,
-    customRecipient: '',
-    organization: isEmployee ? 'উপজেলা শিক্ষা অফিস' : 'মডেল উচ্চ বিদ্যালয়',
-    address: isEmployee ? 'বিয়ানীবাজার' : 'বিয়ানীবাজার',
-    district: 'সিলেট',
-    upazilaOrArea: 'বিয়ানীবাজার',
-    through: template.defaultThrough || (isEmployee ? 'যথাযথ কর্তৃপক্ষের মাধ্যমে' : 'শ্রেণি শিক্ষকের মাধ্যমে'),
-    subject: template.defaultSubject,
-    salutation: 'মহোদয়,',
     applicantName: isEmployee ? 'মোছাঃ রোকেয়া খাতুন' : 'তাহমিদ আহমেদ',
     designation: isEmployee ? 'সহকারী শিক্ষক' : 'শিক্ষার্থী',
-    customDesignation: '',
     employeeId: isEmployee ? '৯১২০৮৫৭৪৬' : '',
-    workplace: isEmployee ? '৫৮নং বৈরাগীবাজার সরকারি প্রাথমিক বিদ্যালয়' : 'বিয়ানীবাজার সরকারি পাইলট মডেল উচ্চ বিদ্যালয়',
+    organization: isEmployee ? 'উপজেলা শিক্ষা অফিস' : 'মডেল উচ্চ বিদ্যালয়',
+    workplace: isEmployee
+      ? '৫৮নং বৈরাগীবাজার সরকারি প্রাথমিক বিদ্যালয়'
+      : 'বিয়ানীবাজার সরকারি পাইলট মডেল উচ্চ বিদ্যালয়',
+    upazilaOrArea: 'বিয়ানীবাজার',
+    district: 'সিলেট',
     mobile: '০১৭১২-৩৪৫৬৭৮',
-    email: 'applicant@example.com',
-
+    fatherOrGuardianName: 'মোঃ আব্দুল জলিল',
     leaveStartDate: today,
     leaveEndDate: today,
     totalDays: '১ (এক) দিন',
-    leaveReason: template.fields.find(f => f.key === 'leaveReason')?.defaultValue || 'জরুরি পারিবারিক প্রয়োজনের কারণে',
-
-    joiningType: template.joiningTypeOptions ? template.joiningTypeOptions[0] : 'চিকিৎসা ছুটি শেষে কর্মস্থলে যোগদানের আবেদন',
     previousLeaveOrderNo: 'উশিঅ/বিয়ানী/২০২৬/১১৮, তারিখ: ১৫-০৪-২০২৬',
     joiningDate: today,
-    joiningTimeSession: 'পূর্বাহ্ণ',
-
-    studentClass: '১০ম শ্রেণি (এসএসসি পরীক্ষার্থী)',
-    rollNumber: '০৫',
-    sectionOrGroup: 'ক শাখা (বিজ্ঞান বিভাগ)',
-    fatherOrGuardianName: 'মোঃ আব্দুল জলিল',
-    familyMonthlyIncome: 'পিতা একজন সাধারণ ক্ষুদ্র ব্যবসায়ী, পরিবারে সদস্য সংখ্যা ৫ জন',
-    gpaOrLastExamResult: 'পূর্ববর্তী পরীক্ষায় জিপিএ ৫.০০',
-    tcReason: 'পিতার সরকারি চাকরি বদলিসূত্রে',
-    newSchoolName: 'সিলেট সরকারি উচ্চ বিদ্যালয়',
-    passingYear: '২০২৫, জিপিএ: ৫.০০',
-
-    attachments: template.fields.find(f => f.key === 'attachments')?.defaultValue ? [template.fields.find(f => f.key === 'attachments')!.defaultValue!] : [],
-    customBodyText: '',
   };
+
+  for (const field of template.fields) {
+    if (!field.defaultValue) continue;
+    if (field.key === 'attachments') {
+      sample.attachments = field.defaultValue;
+      continue;
+    }
+    (sample as unknown as Record<string, string>)[field.key] = field.defaultValue;
+  }
+
+  return sample;
 }
 
 /**
@@ -418,12 +407,11 @@ export function getDefaultFormData(template: FormatTemplate): ApplicationFormDat
   const isEmployee = template.category === 'employee';
   const today = getTodayISODate();
 
-  return {
+  const base: ApplicationFormData = {
     date: toBanglaDate(today),
     recipient: template.defaultRecipient,
     customRecipient: '',
     organization: '',
-    address: '',
     through: template.defaultThrough || (isEmployee ? 'যথাযথ কর্তৃপক্ষের মাধ্যমে' : 'শ্রেণি শিক্ষকের মাধ্যমে'),
     subject: template.defaultSubject,
     salutation: 'মহোদয়,',
@@ -435,7 +423,6 @@ export function getDefaultFormData(template: FormatTemplate): ApplicationFormDat
     upazilaOrArea: '',
     district: '',
     mobile: '',
-    email: '',
 
     leaveStartDate: '',
     leaveEndDate: '',
@@ -446,12 +433,9 @@ export function getDefaultFormData(template: FormatTemplate): ApplicationFormDat
     joiningTimeSession: 'পূর্বাহ্ণ',
     previousLeaveOrderNo: '',
     joiningDate: '',
-    previousLeaveStartDate: '',
-    previousLeaveEndDate: '',
 
     studentClass: '',
     rollNumber: '',
-    sectionOrGroup: '',
     fatherOrGuardianName: '',
     familyMonthlyIncome: '',
     gpaOrLastExamResult: '',
@@ -459,7 +443,14 @@ export function getDefaultFormData(template: FormatTemplate): ApplicationFormDat
     newSchoolName: '',
     passingYear: '',
 
-    attachments: [],
+    attachments: '',
     customBodyText: '',
   };
+
+  for (const field of template.fields) {
+    if (field.type !== 'select' || !field.defaultValue) continue;
+    (base as unknown as Record<string, string>)[field.key] = field.defaultValue;
+  }
+
+  return base;
 }

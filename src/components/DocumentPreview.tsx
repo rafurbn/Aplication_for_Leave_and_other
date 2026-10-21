@@ -154,7 +154,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
 
       {showMissingWarning && missing.length > 0 && (
         <div className="rounded-2xl border border-rose-300 bg-rose-50 p-4 text-xs sm:text-sm text-rose-900 no-print">
-          <span className="font-bold">প্রয়োজনীয় তথ্য পূরণ করুন: </span>
+          <span className="font-bold">প্রয়োজনীয় তথ্য পূরণ করুন: </span>
           {missing.join(', ')}
         </div>
       )}

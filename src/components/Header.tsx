@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
                   ১
                 </span>
                 <span>
-                  Safari ব্রাউজারের নিচের টুলবারের <strong className="text-slate-900">Share</strong> (শেয়ার) বাটনে ট্যাপ করুন।
+                  Safari ব্রাউজারের নিচের টুলবারের <strong className="text-slate-900">Share</strong> (শেয়ার) বাটনে ট্যাপ করুন।
                 </span>
               </li>
               <li className="flex items-start gap-2">

@@ -51,7 +51,6 @@ export interface ApplicationFormData {
   recipient: string;
   customRecipient?: string;
   organization: string;
-  address: string;
   through?: string;
   subject: string;
   salutation: string;
@@ -63,7 +62,6 @@ export interface ApplicationFormData {
   upazilaOrArea: string;
   district: string;
   mobile: string;
-  email?: string;
   
   // Specific for leaves
   leaveStartDate?: string;
@@ -74,15 +72,12 @@ export interface ApplicationFormData {
   // Specific for joining letter
   joiningType?: string; // চিকিৎসা ছুটি শেষে / ১ম মাতৃত্ব / ২য় মাতৃত্ব
   previousLeaveOrderNo?: string;
-  previousLeaveStartDate?: string;
-  previousLeaveEndDate?: string;
   joiningDate?: string;
   joiningTimeSession?: 'পূর্বাহ্ণ' | 'অপরাহ্ণ';
 
   // Specific for students
   studentClass?: string;
   rollNumber?: string;
-  sectionOrGroup?: string;
   fatherOrGuardianName?: string;
   familyMonthlyIncome?: string;
   gpaOrLastExamResult?: string;
@@ -91,7 +86,7 @@ export interface ApplicationFormData {
   passingYear?: string;
   
   // Attachments
-  attachments?: string[];
+  attachments?: string;
   customBodyText?: string;
   date: string;
 }
