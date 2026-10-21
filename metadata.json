@@ -1,6 +1,0 @@
-{
-  "name": "আবেদনপত্র প্রস্তুতকারক - Automated Application Writer PWA",
-  "description": "সরকারি প্রাথমিক বিদ্যালয়ের শিক্ষক ও শিক্ষার্থীদের জন্য দ্রুত ও নির্ভুল বাংলা দরখাস্ত প্রস্তুত ও প্রিন্ট করার আধুনিক PWA অ্যাপ।",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
