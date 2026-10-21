@@ -359,9 +359,10 @@ export const ALL_TEMPLATES: FormatTemplate[] = [
 ];
 
 /**
- * Returns default form state for a given template
+ * Fills every field with realistic demo values so a first-time user can
+ * sees how the finished application is meant to read. Never the starting state.
  */
-export function getDefaultFormData(template: FormatTemplate): ApplicationFormData {
+export function getSampleFormData(template: FormatTemplate): ApplicationFormData {
   const isEmployee = template.category === 'employee';
   const today = getTodayISODate();
 
@@ -405,6 +406,60 @@ export function getDefaultFormData(template: FormatTemplate): ApplicationFormDat
     passingYear: '২০২৫, জিপিএ: ৫.০০',
 
     attachments: template.fields.find(f => f.key === 'attachments')?.defaultValue ? [template.fields.find(f => f.key === 'attachments')!.defaultValue!] : [],
+    customBodyText: '',
+  };
+}
+
+/**
+ * Empty starting state. Only template-derived values (recipient, subject,
+ * default medium, today) are prefilled - no applicant data is invented.
+ */
+export function getDefaultFormData(template: FormatTemplate): ApplicationFormData {
+  const isEmployee = template.category === 'employee';
+  const today = getTodayISODate();
+
+  return {
+    date: toBanglaDate(today),
+    recipient: template.defaultRecipient,
+    customRecipient: '',
+    organization: '',
+    address: '',
+    through: template.defaultThrough || (isEmployee ? 'যথাযথ কর্তৃপক্ষের মাধ্যমে' : 'শ্রেণি শিক্ষকের মাধ্যমে'),
+    subject: template.defaultSubject,
+    salutation: 'মহোদয়,',
+    applicantName: '',
+    designation: '',
+    customDesignation: '',
+    employeeId: '',
+    workplace: '',
+    upazilaOrArea: '',
+    district: '',
+    mobile: '',
+    email: '',
+
+    leaveStartDate: '',
+    leaveEndDate: '',
+    totalDays: '',
+    leaveReason: '',
+
+    joiningType: template.joiningTypeOptions ? template.joiningTypeOptions[0] : 'চিকিৎসা ছুটি শেষে কর্মস্থলে যোগদানের আবেদন',
+    joiningTimeSession: 'পূর্বাহ্ণ',
+    previousLeaveOrderNo: '',
+    joiningDate: '',
+    previousLeaveStartDate: '',
+    previousLeaveEndDate: '',
+
+    studentClass: '',
+    rollNumber: '',
+    sectionOrGroup: '',
+    fatherOrGuardianName: '',
+    familyMonthlyIncome: '',
+    gpaOrLastExamResult: '',
+    tcReason: '',
+    newSchoolName: '',
+    passingYear: '',
+
+    attachments: [],
     customBodyText: '',
   };
 }

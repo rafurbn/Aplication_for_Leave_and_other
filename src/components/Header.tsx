@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useOnlineStatus } from '../hooks/useOnlineStatus';
+import { toBanglaNumber } from '../utils/banglaUtils';
 import { 
   Download, 
   FileText, 
@@ -8,8 +9,7 @@ import {
   ShieldCheck, 
   WifiOff, 
   Share2, 
-  Smartphone,
-  ChevronRight
+  Smartphone
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({
                   title="হোম স্ক্রিনে অ্যাপ ইনস্টল করুন"
                 >
                   <Download className="w-4 h-4" />
-                  <span className="hidden xs:inline">Install App</span>
+                  <span className="hidden sm:inline">Install App</span>
                 </button>
               )}
 
@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-medium transition-colors"
                 >
                   <Smartphone className="w-3.5 h-3.5 text-slate-600" />
-                  <span className="hidden xs:inline">iOS ইনস্টল</span>
+                  <span className="hidden sm:inline">iOS ইনস্টল</span>
                 </button>
               )}
 
@@ -101,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="hidden md:inline">সংরক্ষিত দরখাস্ত</span>
                 {savedCount > 0 && (
                   <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-white bg-emerald-600 rounded-full">
-                    {savedCount}
+                    {toBanglaNumber(savedCount)}
                   </span>
                 )}
               </button>

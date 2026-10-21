@@ -24,11 +24,11 @@ export function generateDocumentContent(template: FormatTemplate, formData: Appl
     ? formData.customBodyText.split(/\n\s*\n/).filter(Boolean)
     : [`বিনীত নিবেদন এই যে, আমি ${formData.workplace || 'অত্র প্রতিষ্ঠানে'} ${designation || 'শিক্ষার্থী/কর্মচারী'} হিসেবে ${formData.leaveReason || 'জরুরি প্রয়োজনে'} এই আবেদন করছি।${start ? ` সময়কাল: ${start} হতে ${end} পর্যন্ত মোট ${duration}।` : ''}`, `অতএব, বিষয়টি সদয় বিবেচনা করে প্রয়োজনীয় অনুমতি প্রদানের জন্য বিনীত অনুরোধ করছি।`];
   const signatoryLines = employee
-    ? ['বিনীত নিবেদক, formData', formData.applicantName || 'আবেদনকারী', `পদবি: ${designation}`, formData.workplace, formData.mobile ? `মোবাইল: ${formData.mobile}` : ''].filter(Boolean)
-    : ['বিনীত নিবেদক,', formData.applicantName || 'শিক্ষার্থী', `শ্রেণি: ${formData.studentClass || ''}`, `রোল: ${formData.rollNumber || ''}`, formData.workplace].filter(Boolean);
+    ? [ 'বিনীত নিবেদক,', formData.applicantName, designation ? `পদবি: ${designation}` : '', formData.workplace, formData.mobile ? `মোবাইল: ${formData.mobile}` : '' ].filter(Boolean)
+    : [ 'বিনীত নিবেদক,', formData.applicantName, formData.studentClass ? `শ্রেণি: ${formData.studentClass}` : '', formData.rollNumber ? `রোল: ${formData.rollNumber}` : '', formData.workplace ].filter(Boolean);
   return {
     date: `তারিখ: ${formData.date || toBanglaDate(new Date())}`,
-    recipientLines: ['বরাবর,', recipient, formData.organization || (employee ? 'উপজেলা শিক্ষা অফিস' : 'বিদ্যালয়'), `${formData.upazilaOrArea || ''}, ${formData.district || ''}`.replace(/^,\s*|,\s*$/g, '')].filter(Boolean),
+    recipientLines: ['বরাবর,', recipient, formData.organization || formData.workplace, [formData.upazilaOrArea, formData.district].filter(Boolean).join(', ')].filter(Boolean),
     throughLine: formData.through && formData.through !== 'সরাসরি' ? `মাধ্যম: ${formData.through}।` : undefined,
     subject: formData.subject || template.defaultSubject,
     salutation: formData.salutation || 'মহোদয়,',

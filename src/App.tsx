@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SubCategoryType, ApplicationFormData, SavedApplication } from './types';
-import { ALL_TEMPLATES, getDefaultFormData } from './data/templates';
+import { ALL_TEMPLATES, getDefaultFormData, getSampleFormData } from './data/templates';
 import { getSavedApplications, saveApplicationLocally, deleteSavedApplication } from './utils/storage';
 import { useTracker } from './hooks/useTracker';
 import { Header } from './components/Header';
@@ -11,16 +11,8 @@ import { SavedApplicationsModal } from './components/SavedApplicationsModal';
 import { AdminPanel } from './components/AdminPanel';
 import { AdSlot } from './components/AdSlot';
 import { ToastContainer, ToastMessage } from './components/Toast';
-import { 
-  ArrowLeft, 
-  Sparkles, 
-  Check, 
-  RotateCcw, 
-  Layers, 
-  Printer, 
-  HeartHandshake,
-  Share2
-} from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+
 
 export default function App() {
   const [selectedTemplateId, setSelectedTemplateId] = useState<SubCategoryType | null>(null);
@@ -76,14 +68,14 @@ export default function App() {
 
   const handleFillSample = () => {
     if (currentTemplate) {
-      setFormData(getDefaultFormData(currentTemplate));
+      setFormData(getSampleFormData(currentTemplate));
       showToast('নমুনা তথ্য সফলভাবে যুক্ত হয়েছে! ডানপাশে লাইভ প্রিভিউ দেখুন।', 'success');
     }
   };
 
   const handleSaveApplication = () => {
     if (!currentTemplate || !formData) return;
-    const newSaved = saveApplicationLocally({
+    saveApplicationLocally({
       formatId: currentTemplate.id,
       formatTitle: currentTemplate.title,
       category: currentTemplate.category,
@@ -200,7 +192,7 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               
               {/* Left Column: Form Controls */}
-              <div className={`lg:col-span-5 ${activeMobileTab === 'form' ? 'block' : 'hidden sm:block'}`}>
+              <div className={`lg:col-span-5 no-print ${activeMobileTab === 'form' ? 'block' : 'hidden sm:block'}`}>
                 <ApplicationForm
                   template={currentTemplate}
                   formData={formData}

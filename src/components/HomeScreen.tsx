@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FormatTemplate, SubCategoryType } from '../types';
 import { ALL_TEMPLATES } from '../data/templates';
+import { toBanglaNumber } from '../utils/banglaUtils';
 import { 
   Briefcase, 
   GraduationCap, 
@@ -129,7 +130,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectTemplate }) => {
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              সব ফরম্যাট ({ALL_TEMPLATES.length})
+              সব ফরম্যাট ({toBanglaNumber(ALL_TEMPLATES.length)})
             </button>
             <button
               onClick={() => setActiveTab('employee')}
@@ -140,7 +141,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectTemplate }) => {
               }`}
             >
               <Briefcase className="w-4 h-4" />
-              ১. চাকরিজীবী পার্ট ({employeeTemplates.length})
+              ১. চাকরিজীবী পার্ট ({toBanglaNumber(employeeTemplates.length)})
             </button>
             <button
               onClick={() => setActiveTab('student')}
@@ -151,7 +152,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectTemplate }) => {
               }`}
             >
               <GraduationCap className="w-4 h-4" />
-              ২. শিক্ষার্থী পার্ট ({studentTemplates.length})
+              ২. শিক্ষার্থী পার্ট ({toBanglaNumber(studentTemplates.length)})
             </button>
           </div>
 
@@ -198,7 +199,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectTemplate }) => {
                 </div>
               </div>
               <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                {filteredEmployee.length} টি ফরম্যাট
+                {toBanglaNumber(filteredEmployee.length)} টি ফরম্যাট
               </span>
             </div>
 
@@ -266,7 +267,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectTemplate }) => {
                 </div>
               </div>
               <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                {filteredStudent.length} টি ফরম্যাট
+                {toBanglaNumber(filteredStudent.length)} টি ফরম্যাট
               </span>
             </div>
 

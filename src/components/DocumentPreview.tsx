@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
 import { FormatTemplate, ApplicationFormData } from '../types';
 import { generateDocumentContent, documentToPlainText } from '../utils/documentGenerator';
-import { 
-  Download, 
-  Printer, 
-  Copy, 
-  Bookmark, 
-  Check, 
-  Edit3, 
-  FileCheck2,
-  ZoomIn,
-  ZoomOut,
-  Maximize2
-} from 'lucide-react';
+import { getMissingRequiredFields } from '../utils/validation';
+import { Bookmark, Check, Copy, Edit3, Printer, ZoomIn, ZoomOut } from 'lucide-react';
 
 interface DocumentPreviewProps {
   template: FormatTemplate;
@@ -33,6 +23,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
   const [isEditingCustom, setIsEditingCustom] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
   const [zoomLevel, setZoomLevel] = useState<number>(100);
+  const [copyFailed, setCopyFailed] = useState(false);
 
   const doc = generateDocumentContent(template, formData);
 
@@ -41,21 +32,24 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
     try {
       await navigator.clipboard.writeText(plainText);
       setCopied(true);
+      setCopyFailed(false);
       setTimeout(() => setCopied(false), 2500);
       onLogGeneration();
     } catch {
-      // fallback
+      setCopyFailed(true);
     }
   };
 
-  const handlePrint = () => {
-    onLogGeneration();
-    window.print();
-  };
+  const missing = getMissingRequiredFields(template, formData);
+  const [showMissingWarning, setShowMissingWarning] = useState(false);
 
-  const handleDownloadPDF = () => {
+  const handlePrintDocument = () => {
+    if (missing.length > 0) {
+      setShowMissingWarning(true);
+      return;
+    }
+    setShowMissingWarning(false);
     onLogGeneration();
-    // Using standard high-fidelity A4 browser print to PDF
     window.print();
   };
 
@@ -92,7 +86,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
               title="সম্পূর্ণ দরখাস্ত কপি করুন"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'কপি হয়েছে!' : 'কপি করুন'}</span>
+              <span>{copied ? 'কপি হয়েছে!' : copyFailed ? 'কপি করা যায়নি' : 'কপি করুন'}</span>
             </button>
 
             {/* Save Application Button */}
@@ -105,24 +99,14 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
               <span>{savedSuccess ? 'সংরক্ষিত!' : 'সেভ করুন'}</span>
             </button>
 
-            {/* Print Button */}
+            {/* Print & PDF - the browser dialog offers both, no raster library needed */}
             <button
-              onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors"
-              title="সরাসরি প্রিন্ট করুন"
-            >
-              <Printer className="w-3.5 h-3.5 text-slate-600" />
-              <span>প্রিন্ট</span>
-            </button>
-
-            {/* Download PDF Button */}
-            <button
-              onClick={handleDownloadPDF}
+              onClick={handlePrintDocument}
               className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors"
-              title="A4 সাইজের ক্লিন PDF ডাউনলোড বা সেভ করুন"
+              title="প্রিন্ট ও পিডিএফ"
             >
-              <Download className="w-4 h-4" />
-              <span>Download PDF</span>
+              <Printer className="w-4 h-4" />
+              <span>প্রিন্ট ও পিডিএফ</span>
             </button>
           </div>
 
@@ -168,6 +152,13 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
         </div>
       </div>
 
+      {showMissingWarning && missing.length > 0 && (
+        <div className="rounded-2xl border border-rose-300 bg-rose-50 p-4 text-xs sm:text-sm text-rose-900 no-print">
+          <span className="font-bold">প্রয়োজনীয় তথ্য পূরণ করুন: </span>
+          {missing.join(', ')}
+        </div>
+      )}
+
       {/* Custom Body Editor Panel if toggled */}
       {isEditingCustom && (
         <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 space-y-2 no-print animate-fade-in">
@@ -196,7 +187,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
       )}
 
       {/* Realistic Official A4 Paper Container */}
-      <div className="overflow-x-auto flex justify-center py-2 bg-slate-100/60 rounded-2xl border border-slate-200/80 p-2 sm:p-4">
+      <div className="a4-preview-shell overflow-x-auto flex justify-center py-2 bg-slate-100/60 rounded-2xl border border-slate-200/80 p-2 sm:p-4">
         <div
           id="printable-a4-document"
           style={{ transform: `scale(${zoomLevel / 100})`, transformOrigin: 'top center' }}
@@ -258,11 +249,13 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
                   </span>
                 </div>
                 <div className="font-bold text-slate-900">
-                  {formData.applicantName || 'মোছাঃ রোকেয়া খাতুন'}
+                  {formData.applicantName}
                 </div>
-                <div className="text-slate-800">
-                  পদবি: {formData.customDesignation || formData.designation}
-                </div>
+                {(formData.customDesignation || formData.designation) && (
+                  <div className="text-slate-800">
+                    পদবি: {formData.customDesignation || formData.designation}
+                  </div>
+                )}
                 {formData.employeeId && (
                   <div className="text-xs text-slate-700">
                     পরিচিতি নম্বর: {formData.employeeId}
@@ -273,12 +266,16 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({
                     শ্রেণি: {formData.studentClass}, রোল: {formData.rollNumber}
                   </div>
                 )}
-                <div className="text-slate-800">
-                  {formData.workplace}
-                </div>
-                <div className="text-slate-700 text-xs sm:text-sm">
-                  {formData.upazilaOrArea}, {formData.district}
-                </div>
+                {formData.workplace && (
+                  <div className="text-slate-800">
+                    {formData.workplace}
+                  </div>
+                )}
+                {(formData.upazilaOrArea || formData.district) && (
+                  <div className="text-slate-700 text-xs sm:text-sm">
+                    {[formData.upazilaOrArea, formData.district].filter(Boolean).join(', ')}
+                  </div>
+                )}
                 {formData.mobile && (
                   <div className="text-slate-700 text-xs sm:text-sm">
                     মোবাইল: {formData.mobile}

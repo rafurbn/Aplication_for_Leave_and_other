@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-fade-in: fade-in 0.22s ease-out;
+  --animate-slide-up: slide-up 0.25s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @layer base {
   body {
     font-family: 'Noto Sans Bengali', Kalpurush, SolaimanLipi, Arial, sans-serif;
@@ -33,6 +48,26 @@
     margin: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
+  }
+
+  /* The preview zoom is a screen-only transform; leaking it into print
+     scales the page content and clips the last lines in Firefox. */
+  #printable-a4-document {
+    transform: none !important;
+    min-height: 0 !important;
+  }
+
+  #printable-a4-document .text-sm,
+  #printable-a4-document .sm\:text-base {
+    font-size: 12pt !important;
+  }
+
+  .a4-preview-shell {
+    display: block !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
   }
 
   @page {
